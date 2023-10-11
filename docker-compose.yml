@@ -92,7 +92,7 @@ services:
 
   backtesting-with-pairs-available-from-2023:
     image: freqtradeorg/freqtrade:stable
-    container_name: ${STRATEGY_NAME:-NostalgiaForInfinityX4}-${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting-from-2022
+    container_name: ${STRATEGY_NAME:-NostalgiaForInfinityX4}-${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting-from-2023
     volumes:
       - "./user_data:/freqtrade/user_data"
       - "./user_data/data:/freqtrade/user_data/data"
