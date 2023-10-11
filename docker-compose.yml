@@ -15,11 +15,9 @@ services:
     working_dir: /testing
 
   backtesting:
-    # image: freqtradeorg/freqtrade:stable
-    build:
-      context: .
-      dockerfile: "./docker/Dockerfile.custom"
-    # container_name: ${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting
+    image: freqtradeorg/freqtrade:stable
+    container_name: ${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting
+    entrypoint: []
     volumes:
       - "./user_data:/freqtrade/user_data"
       - "./user_data/data:/freqtrade/user_data/data"
