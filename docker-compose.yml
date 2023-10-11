@@ -17,7 +17,7 @@ services:
   backtesting:
     image: freqtradeorg/freqtrade:stable
     container_name: ${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting
-    entrypoint: []
+    entrypoint: [sleep,infinity]
     volumes:
       - "./user_data:/freqtrade/user_data"
       - "./user_data/data:/freqtrade/user_data/data"
