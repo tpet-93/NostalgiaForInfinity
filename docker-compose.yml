@@ -17,14 +17,14 @@ services:
   backtesting:
     image: freqtradeorg/freqtrade:stable
     container_name: ${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting
-    entrypoint: [sleep,infinity]
+    entrypoint: ["/bin/sleep", "infinity"]
     volumes:
       - "./user_data:/freqtrade/user_data"
       - "./user_data/data:/freqtrade/user_data/data"
       - "./configs:/freqtrade/configs"
       - "./${STRATEGY_NAME:-NostalgiaForInfinityX4}.py:/freqtrade/${STRATEGY_NAME:-NostalgiaForInfinityX4}.py"
-    command: > 
-      ls -la /freqtrade/configs
+    # command: > 
+      # ls -la /freqtrade/configs
       # backtesting
       # --datadir /freqtrade/user_data/data/${EXCHANGE:-binance}
       # --strategy-list ${STRATEGY_NAME:-NostalgiaForInfinityX4}
