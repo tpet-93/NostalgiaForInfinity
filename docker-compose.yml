@@ -22,7 +22,8 @@ services:
       - "./user_data/data:/freqtrade/user_data/data"
       - "./configs:/freqtrade/configs"
       - "./${STRATEGY_NAME:-NostalgiaForInfinityX4}.py:/freqtrade/${STRATEGY_NAME:-NostalgiaForInfinityX4}.py"
-    command: >
+    command: > 
+      cd /freqtrade  &&
       backtesting
       --datadir /freqtrade/user_data/data/${EXCHANGE:-binance}
       --strategy-list ${STRATEGY_NAME:-NostalgiaForInfinityX4}
