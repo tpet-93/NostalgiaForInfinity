@@ -15,22 +15,26 @@ services:
     working_dir: /testing
 
   backtesting:
-    image: freqtradeorg/freqtrade:stable
-    container_name: ${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting
+    # image: freqtradeorg/freqtrade:stable
+    build:
+      context: .
+      dockerfile: "./docker/Dockerfile.custom"
+    # container_name: ${EXCHANGE:-binance}-${TRADING_MODE:-spot}-backtesting
     volumes:
       - "./user_data:/freqtrade/user_data"
       - "./user_data/data:/freqtrade/user_data/data"
       - "./configs:/freqtrade/configs"
       - "./${STRATEGY_NAME:-NostalgiaForInfinityX4}.py:/freqtrade/${STRATEGY_NAME:-NostalgiaForInfinityX4}.py"
     command: > 
-      backtesting
-      --datadir /freqtrade/user_data/data/${EXCHANGE:-binance}
-      --strategy-list ${STRATEGY_NAME:-NostalgiaForInfinityX4}
-      --config /freqtrade/configs/trading_mode-${TRADING_MODE:-spot}.json
-      --timeframe-detail 1m --cache none --breakdown week
-      --config /freqtrade/configs/exampleconfig.json --timerange ${TIMERANGE:-20230601-20230701}
-      --config /freqtrade/configs/pairlist-backtest-static-${EXCHANGE:-binance}-${TRADING_MODE:-spot}-usdt.json
-      --config /freqtrade/configs/blacklist-${EXCHANGE:-binance}.json
+      ls -la /freqtrade/configs
+      # backtesting
+      # --datadir /freqtrade/user_data/data/${EXCHANGE:-binance}
+      # --strategy-list ${STRATEGY_NAME:-NostalgiaForInfinityX4}
+      # --config /freqtrade/configs/trading_mode-${TRADING_MODE:-spot}.json
+      # --timeframe-detail 1m --cache none --breakdown week
+      # --config /freqtrade/configs/exampleconfig.json --timerange ${TIMERANGE:-20230601-20230701}
+      # --config /freqtrade/configs/pairlist-backtest-static-${EXCHANGE:-binance}-${TRADING_MODE:-spot}-usdt.json
+      # --config /freqtrade/configs/blacklist-${EXCHANGE:-binance}.json
 
   plot-dataframe:
     image: freqtradeorg/freqtrade:stable_plot
